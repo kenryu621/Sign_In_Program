@@ -13,8 +13,6 @@ int main() {
   ifstream list("dataSheet.csv");
   if (!list.is_open())
     cout << "ERROR\n";
-  // string firstName;
-  // string lastName;
   string fullname;
   string IDnum;
   string emailadd;
@@ -23,13 +21,9 @@ int main() {
   int totalMember;
   istringstream(total) >> totalMember;
   while (memberCount < totalMember) {
-    // getline(list, firstName, ',');
-    // getline(list, lastName, ',');
     getline(list, fullname, ',');
     getline(list, IDnum, ',');
     getline(list, emailadd, '\n');
-    // sheet[memberCount].setfname(firstName);
-    // sheet[memberCount].setlname(lastName);
     sheet[memberCount].setfullname(fullname);
     if (sheet[memberCount].setID(IDnum))
       ;
@@ -45,8 +39,6 @@ int main() {
   while (flag) {
     cout << "+===========================+\n";
     cout << "| 1. Sign In                |\n";
-    // cout << "| 2. Change your first name |\n";
-    // cout << "| 3. Change your last name  |\n";
     cout << "| 2. Change your name       |\n";
     cout << "| 3. Change your ID         |\n";
     cout << "| 4. Change your email      |\n";
@@ -83,11 +75,6 @@ int main() {
         if (stoi(createSel) == 1) {
           sheet[memberCount].setID(IDnum);
           cout << "Please enter your full name: ";
-          // getline(cin, firstName);
-          // sheet[memberCount].setfname(firstName);
-          // cout << "Please enter your last name: ";
-          // getline(cin, lastName);
-          // sheet[memberCount].setlname(lastName);
           getline(cin, fullname);
           sheet[memberCount].setfullname(fullname);
           cout << "Please enter your email address: ";
@@ -135,31 +122,6 @@ int main() {
         cout << "Sorry, looks like your ID is not in the record.\n";
       found = false;
       break;
-    // case 3:
-    //   cout << "Please enter your student ID: ";
-    //   getline(cin, IDnum);
-    //   if (IDnum.length() != 7) {
-    //     cout << "Looks like your ID number is invalid, please try again.\n";
-    //     while (IDnum.length() != 7) {
-    //       cout << "Please enter your student ID: ";
-    //       getline(cin, IDnum);
-    //     }
-    //   }
-    //   for (int i = 0; i < memberCount; i++) {
-    //     if (sheet[i].getID() == IDnum) {
-    //       found = true;
-    //       cout << "We found your account: " << sheet[i].getfname() << " "
-    //            << sheet[i].getlname() << endl;
-    //       cout << "Enter new last name: ";
-    //       getline(cin, lastName);
-    //       sheet[i].setlname(lastName);
-    //       cout << "Great, you all set!\n";
-    //     }
-    //   }
-    //   if (!found)
-    //     cout << "Sorry, looks like your ID is not in the record.\n";
-    //   found = false;
-    //   break;
     case 3:
       cout << "Please enter your student ID: ";
       getline(cin, IDnum);

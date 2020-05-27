@@ -7,23 +7,16 @@ using namespace std;
 
 class studentList {
 private:
-  // string fname;
-  // string lname;
   string fullname;
   string studentID;
   string email;
 
 public:
   studentList();
-  // studentList(string fn, string ln, string ID, string address);
-  // void setfname(string fn);
-  // void setlname(string ln);
   studentList(string fn, string ID, string address);
   void setfullname(string fn);
   bool setID(string ID);
   bool setemail(string address);
-  // string getfname();
-  // string getlname();
   string getfullname();
   string getID();
   string getemail();
@@ -31,24 +24,10 @@ public:
 };
 
 studentList::studentList() {
-  // fname = "N/A";
-  // lname = "N/A";
   fullname = "N/A";
   studentID = "N/A";
   email = "N/A";
 }
-// studentList::studentList(string fn, string ln, string ID, string address) {
-//     fname=fn;
-//     lname=ln;
-//     studentID=ID;
-//     email=address;
-// }
-// void studentList::setfname(string fn) {
-//     fname=fn;
-// }
-// void studentList::setlname(string ln) {
-//     lname=ln;
-// }
 void studentList::setfullname(string fn) { fullname = fn; }
 bool studentList::setID(string ID) {
   if (ID.length() == 7) {
@@ -65,12 +44,6 @@ bool studentList::setemail(string address) {
     }
   return false;
 }
-// string studentList::getfname() {
-//     return fname;
-// }
-// string studentList::getlname() {
-//     return lname;
-// }
 string studentList::getfullname() { return fullname; }
 string studentList::getID() { return studentID; }
 string studentList::getemail() { return email; }
