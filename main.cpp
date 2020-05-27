@@ -37,6 +37,7 @@ int main() {
       ;
     memberCount++;
   }
+  list.close();
   int signin[100];
   int logged = 0;
   bool found = false;
@@ -81,7 +82,7 @@ int main() {
         getline(cin, createSel);
         if (stoi(createSel) == 1) {
           sheet[memberCount].setID(IDnum);
-          cout << "Please enter your first name: ";
+          cout << "Please enter your full name: ";
           // getline(cin, firstName);
           // sheet[memberCount].setfname(firstName);
           // cout << "Please enter your last name: ";
@@ -124,7 +125,7 @@ int main() {
         if (sheet[i].getID() == IDnum) {
           found = true;
           cout << "We found your account: " << sheet[i].getfullname() << endl;
-          cout << "Enter new first name: ";
+          cout << "Enter new full name: ";
           getline(cin, fullname);
           sheet[i].setfullname(fullname);
           cout << "Great, you all set!\n";
@@ -251,6 +252,5 @@ int main() {
     outData << sheet[signin[i]].getfullname() << "," << sheet[signin[i]].getID()
             << "," << sheet[signin[i]].getemail() << "\n";
   outData.close();
-  system("pause");
   return 0;
 }
