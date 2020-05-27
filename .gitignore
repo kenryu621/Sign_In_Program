@@ -1,0 +1,5 @@
+
+*.o
+*.gch
+*.csv
+!dataSheet.csv
