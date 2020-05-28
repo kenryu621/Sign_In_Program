@@ -1,4 +1,5 @@
 #include "studentList.h"
+#include <Windows.h>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
@@ -6,6 +7,14 @@
 #include <stdio.h>
 #include <string>
 using namespace std;
+
+void color_text(int color, string text, bool endl) {
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+  cout << text;
+  SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+  if (endl)
+    cout << endl;
+}
 
 int main() {
   studentList sheet[100];
@@ -85,7 +94,10 @@ int main() {
                 "an account?\n";
         do {
           try {
-            cout << "Enter 1 for Yes, 0 for No: ";
+            cout << "Enter ";
+            color_text(10, "1 for YES", 0);
+            color_text(12, ", 0 for NO", 0);
+            cout << ": ";
             getline(cin, select);
             if (stoi(select) < 0)
               throw 1;
