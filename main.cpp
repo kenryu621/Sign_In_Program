@@ -105,6 +105,9 @@ int main() {
             color_text(12, "0 for NO", 0);
             cout << ": ";
 #else
+            cout << "Enter \033[1;32m1 for YES\033[0m,\033[1;31m 0 for "
+                    "NO:\033[0m ";
+
 #endif
             getline(cin, select);
             if (stoi(select) < 0)
