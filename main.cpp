@@ -46,9 +46,22 @@ int main() {
     cout << "| 99. Exit                  |\n";
     cout << "+===========================+\n";
     string select;
-    cout << "Please enter the number of operation: ";
-    getline(cin, select);
+    bool correct_input;
+    do {
+      try {
+        cout << "Please enter the number of operation: ";
+        getline(cin, select);
+        if (stoi(select) < 0)
+          throw 1;
+        else
+          correct_input = true;
+      } catch (...) {
+        cout << "You must enter the correct number!" << endl;
+        correct_input = false;
+      }
+    } while (!correct_input);
     switch (stoi(select)) {
+      // Sign in
     case 1:
       cout << "Please enter your student ID: ";
       getline(cin, IDnum);
@@ -69,10 +82,21 @@ int main() {
       }
       if (!found) {
         cout << "\nLooks like you are not in the record, do you want to create "
-                "an account?\nEnter 1 for Yes, 0 for No: ";
-        string createSel;
-        getline(cin, createSel);
-        if (stoi(createSel) == 1) {
+                "an account?\n";
+        do {
+          try {
+            cout << "Enter 1 for Yes, 0 for No: ";
+            getline(cin, select);
+            if (stoi(select) < 0)
+              throw 1;
+            else
+              correct_input = true;
+          } catch (...) {
+            cout << "You must enter the correct number!" << endl;
+            correct_input = false;
+          }
+        } while (!correct_input);
+        if (stoi(select) == 1) {
           sheet[memberCount].setID(IDnum);
           cout << "Please enter your full name: ";
           getline(cin, fullname);
@@ -98,6 +122,7 @@ int main() {
       }
       found = false;
       break;
+      // Change name
     case 2:
       cout << "Please enter your student ID: ";
       getline(cin, IDnum);
@@ -122,6 +147,7 @@ int main() {
         cout << "Sorry, looks like your ID is not in the record.\n";
       found = false;
       break;
+      // Change ID
     case 3:
       cout << "Please enter your student ID: ";
       getline(cin, IDnum);
@@ -153,6 +179,7 @@ int main() {
         cout << "Sorry, looks like your ID is not in the record.\n";
       found = false;
       break;
+      // Change Email
     case 4:
       cout << "Please enter your student ID: ";
       getline(cin, IDnum);
@@ -185,6 +212,7 @@ int main() {
         cout << "Sorry, looks like your ID is not in the record.\n";
       found = false;
       break;
+      // Display
     case 5:
       for (int i = 0; i < logged; i++)
         sheet[signin[i]].display();
