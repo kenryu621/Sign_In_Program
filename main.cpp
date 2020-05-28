@@ -96,7 +96,8 @@ int main() {
           try {
             cout << "Enter ";
             color_text(10, "1 for YES", 0);
-            color_text(12, ", 0 for NO", 0);
+            cout << ", ";
+            color_text(12, "0 for NO", 0);
             cout << ": ";
             getline(cin, select);
             if (stoi(select) < 0)
