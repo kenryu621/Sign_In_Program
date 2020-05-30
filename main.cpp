@@ -11,14 +11,25 @@
 using namespace std;
 
 #ifdef _WIN32
-void color_text(int color, string text, bool endl) {
+void color_text(int color, string text, bool endL) {
   SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
   cout << text;
   SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-  if (endl)
+  if (endL)
     cout << endl;
 }
 #endif
+
+void menu_display() {
+  cout << "+===========================+\n";
+  cout << "| 1. Sign In                |\n";
+  cout << "| 2. Change your name       |\n";
+  cout << "| 3. Change your ID         |\n";
+  cout << "| 4. Change your email      |\n";
+  cout << "| 5. Display signed in      |\n";
+  cout << "| 99. Exit                  |\n";
+  cout << "+===========================+\n";
+}
 
 int main() {
   studentList sheet[100];
@@ -48,17 +59,9 @@ int main() {
   int signin[100];
   int logged = 0;
   bool found = false;
-  bool flag = true;
-  while (flag) {
-    cout << "+===========================+\n";
-    cout << "| 1. Sign In                |\n";
-    cout << "| 2. Change your name       |\n";
-    cout << "| 3. Change your ID         |\n";
-    cout << "| 4. Change your email      |\n";
-    cout << "| 5. Display signed in      |\n";
-    cout << "| 99. Exit                  |\n";
-    cout << "+===========================+\n";
-    string select;
+  string select;
+  do {
+    menu_display();
     bool correct_input;
     do {
       try {
@@ -69,7 +72,7 @@ int main() {
         else
           correct_input = true;
       } catch (...) {
-        cout << "You must enter the correct number!" << endl;
+        cout << "You must enter the correct number!\n";
         correct_input = false;
       }
     } while (!correct_input);
@@ -115,7 +118,7 @@ int main() {
             else
               correct_input = true;
           } catch (...) {
-            cout << "You must enter the correct number!" << endl;
+            cout << "You must enter the correct number!\n";
             correct_input = false;
           }
         } while (!correct_input);
@@ -241,12 +244,11 @@ int main() {
         sheet[signin[i]].display();
       break;
     case 99:
-      flag = false;
       break;
     default:
       cout << "Sorry, the number you enter is invalid.\n";
     }
-  }
+  } while (stoi(select) != 99);
   ofstream memberSheet;
   if (remove("dataSheet.csv"))
     ;
@@ -265,5 +267,8 @@ int main() {
     outData << sheet[signin[i]].getfullname() << "," << sheet[signin[i]].getID()
             << "," << sheet[signin[i]].getemail() << "\n";
   outData.close();
+#ifdef _WIN32
+  system("pause");
+#endif
   return 0;
 }
